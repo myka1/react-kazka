@@ -69,7 +69,7 @@ const App = () => {
   };
 
   const removeUserByName = (name: string) => {
-    if (!users.some((user) => user.name === name)) {
+    if (!users.some((user) => user.name.toLowerCase() === name.toLowerCase())) {
       return alert("nera tokio vardo");
     }
     setUsers((currentUsers) =>
@@ -87,25 +87,40 @@ const App = () => {
   }
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addUser();
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          marginTop: "2rem",
+          marginBottom: "2rem",
         }}
       >
-        <input value={name} onChange={(e) => setName(e.target.value)} />
-        <input value={lastName} onChange={(e) => setLastName(e.target.value)} />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            addUser();
+          }}
+        >
+          <input value={name} onChange={(e) => setName(e.target.value)} />
+          <input
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
 
-        <button>Add User</button>
-      </form>
-      <DeleteByName removeUserByName={removeUserByName} />
+          <button>Add User</button>
+        </form>
+        <DeleteByName removeUserByName={removeUserByName} />
+        <SearchBarElement />
+      </div>
+      <div className="users-div">
+        <h2>Users</h2>
 
-      <UsersList
-        users={filteredUsers}
-        onUserClick={duplicateUser}
-        removeUser={removeUser}
-      />
-      <SearchBarElement />
+        <UsersList
+          users={filteredUsers}
+          onUserClick={duplicateUser}
+          removeUser={removeUser}
+        />
+      </div>
     </div>
   );
 };

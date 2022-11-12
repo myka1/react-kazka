@@ -11,37 +11,38 @@ const UsersList = ({
   removeUser: (user: User) => void;
 }) => {
   return (
-    <div>
-      <h2>Users</h2>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          marginBottom: "2rem",
-        }}
-      >
+    <main className="user-list-main">
+      <ul className="users-list-ul">
         {users.map((user) => (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-            }}
-            key={user.id + 1}
-          >
-            <button
-              style={{ flexGrow: "1" }}
-              onClick={() => onUserClick(user)}
-              key={user.id}
-            >
-              {user.id}: {user.name} {user.lastName}
-            </button>
-            <button onClick={() => removeUser(user)} key={user.id + 2}>
-              del
-            </button>
+          <div className="user-list-div">
+            <div className="user-list-li-div">
+              <li className="user-list-li">
+                <p className="user-list-li-p">
+                  {user.id}: {user.name} {user.lastName}
+                </p>
+              </li>
+            </div>
+
+            <div className="user-list-button-div">
+              <button
+                className="user-list-doublicate-button"
+                onClick={() => onUserClick(user)}
+                key={user.id}
+              >
+                Doublicate
+              </button>
+              <button
+                className="user-list-delete-button"
+                onClick={() => removeUser(user)}
+                key={user.id + 2}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
-      </div>
-    </div>
+      </ul>
+    </main>
   );
 };
 

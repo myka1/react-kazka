@@ -10,7 +10,6 @@ const DeleteByName = ({
 
   return (
     <form
-      style={{ marginTop: "3rem" }}
       onSubmit={(e) => {
         e.preventDefault();
         removeUserByName(nameToDelete);
