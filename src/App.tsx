@@ -88,14 +88,7 @@ const App = () => {
   }
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          marginTop: "2rem",
-          marginBottom: "2rem",
-        }}
-      >
+      <div className="nav">
         <form
           onSubmit={(e) => {
             e.preventDefault();

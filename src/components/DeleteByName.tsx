@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { User } from "../App";
 
 const DeleteByName = ({
   removeUserByName,
