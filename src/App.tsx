@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useState } from "react";
 import UsersList from "./components/UsersList";
 // import useKeydownListener from "./hooks/useKeydownListener";
 import useUsersListRefiller from "./hooks/useUsersListRefiller";
@@ -6,6 +6,7 @@ import DeleteByName from "./components/DeleteByName";
 import SearchBar from "./components/SearchBar";
 import { useSearch } from "./hooks/useSearch";
 import { getFilteredUsers } from "./utils";
+import AddUser from "./components/AddUser";
 
 export type User = {
   name: string;
@@ -29,22 +30,13 @@ let index = mockUsers.length;
 
 const App = () => {
   const [users, setUsers] = useState<User[]>(mockUsers);
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
+
   const { SearchBarElement, searchQuery } = useSearch();
   // const [nameToDelete, setNameToDelete] = useState("");
 
   // useKeydownListener(() => removeUser(users.length - 1));
 
   useUsersListRefiller(users, () => setUsers(mockUsers));
-
-  const addUser = () => {
-    const newUser = { id: index, name, lastName };
-    setUsers((currentUsers) => [...currentUsers, newUser]);
-    index++;
-    setName("");
-    setLastName("");
-  };
 
   const removeUser = (user: User) => {
     setUsers((currentUsers) =>
@@ -69,7 +61,7 @@ const App = () => {
   };
 
   const removeUserByName = (name: string) => {
-    if (!users.some((user) => user.name === name)) {
+    if (!users.some((user) => user.name.toLowerCase() === name.toLowerCase())) {
       return alert("nera tokio vardo");
     }
     setUsers((currentUsers) =>
@@ -87,17 +79,8 @@ const App = () => {
   }
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addUser();
-        }}
-      >
-        <input value={name} onChange={(e) => setName(e.target.value)} />
-        <input value={lastName} onChange={(e) => setLastName(e.target.value)} />
-
-        <button>Add User</button>
-      </form>
+      <AddUser />
+      <SearchBarElement />
       <DeleteByName removeUserByName={removeUserByName} />
 
       <UsersList
@@ -105,7 +88,6 @@ const App = () => {
         onUserClick={duplicateUser}
         removeUser={removeUser}
       />
-      <SearchBarElement />
     </div>
   );
 };
