@@ -17,6 +17,7 @@ const DeleteByName = ({
       }}
     >
       <input
+        placeholder="Name"
         value={nameToDelete}
         onChange={(e) => setNameToDelete(e.target.value)}
       />

@@ -56,11 +56,14 @@ button {
 
 .user-list-li-div {
     min-width: 13rem;
-    text-align: center;
-    vertical-align: middle;
     display: flex;
-    align-content: center;
-    justify-content: center;
+    align-items: center;
+}
+
+.user-list-li-p {
+    position: absolute;
+    
+    
 }
 
 .user-list-li {
@@ -71,13 +74,13 @@ button {
 }
 
 
-.user-list-button-div {
+/* .user-list-button-div {
     
 }
 
 .user-list-doublicate-button, .user-list-delete-button {
     
-}
+} */
 
 
 

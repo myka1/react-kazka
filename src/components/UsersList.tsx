@@ -16,11 +16,9 @@ const UsersList = ({
         {users.map((user) => (
           <div className="user-list-div">
             <div className="user-list-li-div">
-              <li className="user-list-li">
-                <p className="user-list-li-p">
-                  {user.id}: {user.name} {user.lastName}
-                </p>
-              </li>
+              <div className="user-list-li-p">
+                {user.id}: {user.name} {user.lastName}
+              </div>
             </div>
 
             <div className="user-list-button-div">

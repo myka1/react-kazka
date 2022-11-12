@@ -102,8 +102,13 @@ const App = () => {
             addUser();
           }}
         >
-          <input value={name} onChange={(e) => setName(e.target.value)} />
           <input
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            placeholder="Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
