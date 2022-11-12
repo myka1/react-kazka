@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 import { User } from "../App";
 
-const useUsersListRefiller = (action: (value: any) => User, user: boolean, value: User[]) => {
+
+const useUsersListRefiller = (users: User[], refillUserList: () => void) => {
     useEffect(() => {
-        action(value)
-        return 
-    }, [user])
+      refillUserList();
     
-}
+    }, [users.length === 0]);
+  };
 
 export default useUsersListRefiller;
  
-// Nesigauna padaryt kad taip veiktu

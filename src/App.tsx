@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import UsersList from "./components/UsersList";
-import useKeydownListener from "./hooks/useKeydownListener";
-// import useUsersListRefiller from "./hooks/useUsersListRefiller";
+// import useKeydownListener from "./hooks/useKeydownListener";
+import useUsersListRefiller from "./hooks/useUsersListRefiller";
 import DeleteByName from "./components/DeleteByName";
+import SearchBar from "./components/SearchBar";
+import { useSearch } from "./hooks/useSearch";
+import { getFilteredUsers } from "./utils";
 
 export type User = {
   name: string;
@@ -13,56 +16,70 @@ export type User = {
 const mockUsers = [
   { id: 0, name: "kazkas", lastName: "last" },
   { id: 1, name: "odosdoao", lastName: "lasteris" },
-  { id: 2, name: "trecias", lastName: "yoks" },
-  { id: 3, name: "odosdoao", lastName: "lasteris" },
-  { id: 4, name: "trecias", lastName: "yoks" },
-  { id: 5, name: "odosdoao", lastName: "lasteris" },
-  { id: 6, name: "trecias", lastName: "yoks" },
-  { id: 7, name: "odosdoao", lastName: "lasteris" },
-  { id: 8, name: "trecias", lastName: "yoks" },
+  { id: 2, name: "twey", lastName: "yoks" },
+  { id: 3, name: "gfdg", lastName: "utyruyr" },
+  { id: 4, name: "iuyiy", lastName: "yoks" },
+  { id: 5, name: "ytrey", lastName: "fdhsw" },
+  { id: 6, name: "jhgjg", lastName: "yoks" },
+  { id: 7, name: "hfdwwet", lastName: "lasteris" },
+  { id: 8, name: "mbmgmmgm", lastName: "yoks" },
 ];
+
+let index = mockUsers.length;
 
 const App = () => {
   const [users, setUsers] = useState<User[]>(mockUsers);
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [nameToDelete, setNameToDelete] = useState("");
+  const { SearchBarElement, searchQuery } = useSearch();
+  // const [nameToDelete, setNameToDelete] = useState("");
 
   // useKeydownListener(() => removeUser(users.length - 1));
 
-  const useUsersListRefiller = () => {
-    useEffect(() => {
-      setUsers(mockUsers);
-      return setUsers(mockUsers);
-    }, [users.length === 0]);
-  };
-
-  useUsersListRefiller();
+  useUsersListRefiller(users, () => setUsers(mockUsers));
 
   const addUser = () => {
-    const newUser = { id: users[users.length - 1].id + 1, name, lastName };
+    const newUser = { id: index, name, lastName };
     setUsers((currentUsers) => [...currentUsers, newUser]);
+    index++;
     setName("");
     setLastName("");
   };
 
-  const removeUser = (id: number) => {
+  const removeUser = (user: User) => {
     setUsers((currentUsers) =>
-      currentUsers.filter((user) => {
-        return id !== user.id;
+      currentUsers.filter((currentUser) => {
+        return user.id !== currentUser.id;
       })
     );
   };
 
+  const duplicateUser = (user: User) => {
+    const newUser: User = {
+      name: user.name,
+      lastName: user.lastName,
+      id: index,
+    };
+    index++;
+    const freshUsers = JSON.parse(JSON.stringify(users));
+    freshUsers.splice(users.indexOf(user) + 1, 0, newUser);
+
+    setUsers(freshUsers);
+    console.log(freshUsers);
+  };
+
   const removeUserByName = (name: string) => {
+    if (!users.some((user) => user.name === name)) {
+      return alert("nera tokio vardo");
+    }
     setUsers((currentUsers) =>
       currentUsers.filter((user) => {
         return name.toLowerCase() !== user.name.toLowerCase();
       })
     );
-    setNameToDelete("");
   };
 
+  const filteredUsers = getFilteredUsers(users, searchQuery);
   return (
     <div>
       <form
@@ -76,12 +93,9 @@ const App = () => {
 
         <button>Submit</button>
       </form>
-      <UsersList users={users} onUserClick={removeUser} />
-      <DeleteByName
-        removeUserByName={removeUserByName}
-        nameToDelete={nameToDelete}
-        setNameToDelete={setNameToDelete}
-      />
+      <UsersList users={filteredUsers} onUserClick={duplicateUser} />
+      <DeleteByName removeUserByName={removeUserByName} />
+      <SearchBarElement />
     </div>
   );
 };

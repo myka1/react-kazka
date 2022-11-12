@@ -1,18 +1,20 @@
+import { useState } from "react";
+import { User } from "../App";
+
 const DeleteByName = ({
   removeUserByName,
-  nameToDelete,
-  setNameToDelete,
 }: {
   removeUserByName: (nameToDelete: string) => void;
-  nameToDelete: string;
-  setNameToDelete: (value: string) => void;
 }) => {
+  const [nameToDelete, setNameToDelete] = useState("");
+
   return (
     <form
       style={{ marginTop: "3rem" }}
       onSubmit={(e) => {
         e.preventDefault();
         removeUserByName(nameToDelete);
+        setNameToDelete("");
       }}
     >
       <input
