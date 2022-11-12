@@ -14,15 +14,16 @@ export type User = {
 };
 
 const mockUsers = [
-  { id: 0, name: "kazkas", lastName: "last" },
-  { id: 1, name: "odosdoao", lastName: "lasteris" },
-  { id: 2, name: "twey", lastName: "yoks" },
-  { id: 3, name: "gfdg", lastName: "utyruyr" },
-  { id: 4, name: "iuyiy", lastName: "yoks" },
-  { id: 5, name: "ytrey", lastName: "fdhsw" },
-  { id: 6, name: "jhgjg", lastName: "yoks" },
-  { id: 7, name: "hfdwwet", lastName: "lasteris" },
-  { id: 8, name: "mbmgmmgm", lastName: "yoks" },
+  { id: 0, name: "Bert", lastName: "Brown" },
+  { id: 1, name: "Michael", lastName: "Taylor" },
+  { id: 2, name: "Lee", lastName: "Barrett" },
+  { id: 3, name: "Dolores", lastName: "Wheeler" },
+  { id: 4, name: "Ernest", lastName: "Reed" },
+  { id: 5, name: "Nettie", lastName: "Walters" },
+  { id: 6, name: "NetNathan", lastName: "Howelltie" },
+  { id: 7, name: "NetNatTonya", lastName: "Douglashan" },
+  { id: 8, name: "Antonia", lastName: "Myers" },
+  { id: 9, name: "AntoJanis", lastName: "Bridgesnia" },
 ];
 
 let index = mockUsers.length;
