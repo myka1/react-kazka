@@ -80,6 +80,11 @@ const App = () => {
   };
 
   const filteredUsers = getFilteredUsers(users, searchQuery);
+  for (let charUp of filteredUsers) {
+    charUp.name = charUp.name.charAt(0).toUpperCase() + charUp.name.slice(1);
+    charUp.lastName =
+      charUp.lastName.charAt(0).toUpperCase() + charUp.lastName.slice(1);
+  }
   return (
     <div>
       <form
@@ -91,10 +96,15 @@ const App = () => {
         <input value={name} onChange={(e) => setName(e.target.value)} />
         <input value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
-        <button>Submit</button>
+        <button>Add User</button>
       </form>
-      <UsersList users={filteredUsers} onUserClick={duplicateUser} />
       <DeleteByName removeUserByName={removeUserByName} />
+
+      <UsersList
+        users={filteredUsers}
+        onUserClick={duplicateUser}
+        removeUser={removeUser}
+      />
       <SearchBarElement />
     </div>
   );
