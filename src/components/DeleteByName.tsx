@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { User } from "../App";
 
 const DeleteByName = ({
   removeUserByName,
+  users,
 }: {
   removeUserByName: (nameToDelete: string) => void;
+  users: User[];
 }) => {
   const [nameToDelete, setNameToDelete] = useState("");
 
@@ -16,10 +19,16 @@ const DeleteByName = ({
       }}
     >
       <input
+        list="users"
         placeholder="Name"
         value={nameToDelete}
         onChange={(e) => setNameToDelete(e.target.value)}
       />
+      <datalist id="users">
+        {users.map((user) => (
+          <option value={user.name}>{user.name}</option>
+        ))}
+      </datalist>
       <button>Delete Users By Name</button>
     </form>
   );

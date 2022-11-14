@@ -1,9 +1,7 @@
-import { useEffect, useId, useState } from "react";
+import { useState } from "react";
 import UsersList from "./components/UsersList";
-// import useKeydownListener from "./hooks/useKeydownListener";
 import useUsersListRefiller from "./hooks/useUsersListRefiller";
 import DeleteByName from "./components/DeleteByName";
-import SearchBar from "./components/SearchBar";
 import { useSearch } from "./hooks/useSearch";
 import { getFilteredUsers } from "./utils";
 
@@ -33,9 +31,6 @@ const App = () => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const { SearchBarElement, searchQuery } = useSearch();
-  // const [nameToDelete, setNameToDelete] = useState("");
-
-  // useKeydownListener(() => removeUser(users.length - 1));
 
   useUsersListRefiller(users, () => setUsers(mockUsers));
 
@@ -86,6 +81,7 @@ const App = () => {
     charUp.lastName =
       charUp.lastName.charAt(0).toUpperCase() + charUp.lastName.slice(1);
   }
+
   return (
     <div>
       <div className="nav">
@@ -96,24 +92,29 @@ const App = () => {
           }}
         >
           <input
+            required
+            type="text"
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
+            required
+            type="text"
             placeholder="Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
-
           <button>Add User</button>
         </form>
-        <DeleteByName removeUserByName={removeUserByName} />
+        <DeleteByName
+          removeUserByName={removeUserByName}
+          users={filteredUsers}
+        />
         <SearchBarElement />
       </div>
       <div className="users-div">
         <h2>Users</h2>
-
         <UsersList
           users={filteredUsers}
           onUserClick={duplicateUser}
