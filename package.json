@@ -2,12 +2,9 @@
   "name": "todo-counter",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://myka1.github.io/react-kazka/",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
