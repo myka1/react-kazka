@@ -4,9 +4,11 @@ import { User } from "../App";
 const DeleteByName = ({
   removeUserByName,
   users,
+  nameError,
 }: {
   removeUserByName: (nameToDelete: string) => void;
   users: User[];
+  nameError: string;
 }) => {
   const [nameToDelete, setNameToDelete] = useState("");
 
@@ -30,6 +32,7 @@ const DeleteByName = ({
         ))}
       </datalist>
       <button>Delete Users By Name</button>
+      <p className="deleteByNameError">{nameError}</p>
     </form>
   );
 };

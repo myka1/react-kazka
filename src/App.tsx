@@ -31,6 +31,7 @@ const App = () => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const { SearchBarElement, searchQuery } = useSearch();
+  const [nameError, setNameError] = useState("");
 
   useUsersListRefiller(users, () => setUsers(mockUsers));
 
@@ -66,13 +67,15 @@ const App = () => {
 
   const removeUserByName = (name: string) => {
     if (!users.some((user) => user.name.toLowerCase() === name.toLowerCase())) {
-      return alert("nera tokio vardo");
+      setNameError("nera tokio vardo");
+    } else {
+      setUsers((currentUsers) =>
+        currentUsers.filter((user) => {
+          setNameError("");
+          return name.toLowerCase() !== user.name.toLowerCase();
+        })
+      );
     }
-    setUsers((currentUsers) =>
-      currentUsers.filter((user) => {
-        return name.toLowerCase() !== user.name.toLowerCase();
-      })
-    );
   };
 
   const filteredUsers = getFilteredUsers(users, searchQuery);
@@ -110,6 +113,7 @@ const App = () => {
         <DeleteByName
           removeUserByName={removeUserByName}
           users={filteredUsers}
+          nameError={nameError}
         />
         <SearchBarElement />
       </div>

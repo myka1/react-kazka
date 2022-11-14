@@ -32,6 +32,11 @@ button {
     
 }
 
+.deleteByNameError {
+    position: absolute; 
+    color: red;
+    margin-top: 5px;
+}
 
 .users-div {
     padding-top: 4rem;
@@ -69,9 +74,12 @@ button {
    
 }
 
-@media (max-width: 350px) {
-    #text {
-        width: 10px;
+@media (max-width: 300px) {
+    .user-list-li-div{
+        margin-bottom: 20px;
+        margin-top: 20px;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -83,6 +91,12 @@ button {
     .user-list-button-div{
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media (max-width: 505px) {
+    .deleteByNameError {
+        position: static;
     }
 }
 
