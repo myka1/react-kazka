@@ -32,6 +32,10 @@ button {
     
 }
 
+.searchBar {
+    text-shadow: 0.1px 0.5px;
+}
+
 .deleteByNameError {
     position: absolute; 
     color: red;
