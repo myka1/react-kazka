@@ -39,7 +39,7 @@ button {
 .deleteByNameError {
     position: absolute; 
     color: red;
-    margin-top: 5px;
+    margin-top: 0;
 }
 
 .users-div {
