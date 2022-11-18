@@ -1,3 +1,4 @@
+import { buttonBaseClasses } from "@mui/material";
 import { useState } from "react";
 import { User } from "../App";
 
@@ -5,10 +6,12 @@ const DeleteByName = ({
   removeUserByName,
   users,
   nameError,
+  handleClick,
 }: {
   removeUserByName: (nameToDelete: string) => void;
   users: User[];
   nameError: string;
+  handleClick: () => void;
 }) => {
   const [nameToDelete, setNameToDelete] = useState("");
 
@@ -28,11 +31,16 @@ const DeleteByName = ({
       />
       <datalist id="users">
         {users.map((user) => (
-          <option value={user.name}>{user.name}</option>
+          <option key={user.id} value={user.name}>
+            {user.name}
+          </option>
         ))}
       </datalist>
       <button>Delete Users By Name</button>
-      <p className="deleteByNameError">{nameError}</p>
+      <p className="deleteByNameError">
+        {nameError}{" "}
+        {nameError !== "" && <button onClick={handleClick}>X</button>}
+      </p>
     </form>
   );
 };

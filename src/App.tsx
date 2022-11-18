@@ -62,7 +62,6 @@ const App = () => {
     freshUsers.splice(users.indexOf(user) + 1, 0, newUser);
 
     setUsers(freshUsers);
-    console.log(freshUsers);
   };
 
   const removeUserByName = (name: string) => {
@@ -76,6 +75,10 @@ const App = () => {
         })
       );
     }
+  };
+
+  const handleClick = () => {
+    setNameError("");
   };
 
   const filteredUsers = getFilteredUsers(users, searchQuery);
@@ -114,6 +117,7 @@ const App = () => {
           removeUserByName={removeUserByName}
           users={filteredUsers}
           nameError={nameError}
+          handleClick={handleClick}
         />
         <SearchBarElement />
       </div>

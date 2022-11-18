@@ -1,4 +1,5 @@
 import { User } from "../App";
+import { Fragment } from "react";
 
 const UsersList = ({
   users,
@@ -13,30 +14,30 @@ const UsersList = ({
     <main className="user-list-main">
       <ul className="users-list-ul">
         {users.map((user) => (
-          <div className="user-list-div">
-            <div className="user-list-li-div">
-              <div className="user-list-li-p">
-                {user.id}: {user.name} {user.lastName}
+          <Fragment key={user.id}>
+            <div className="user-list-div">
+              <div className="user-list-li-div">
+                <li className="user-list-li-p">
+                  {user.id}: {user.name} {user.lastName}
+                </li>
+              </div>
+
+              <div className="user-list-button-div">
+                <button
+                  className="user-list-doublicate-button"
+                  onClick={() => onUserClick(user)}
+                >
+                  Doublicate
+                </button>
+                <button
+                  className="user-list-delete-button"
+                  onClick={() => removeUser(user)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
-
-            <div className="user-list-button-div">
-              <button
-                className="user-list-doublicate-button"
-                onClick={() => onUserClick(user)}
-                key={user.id}
-              >
-                Doublicate
-              </button>
-              <button
-                className="user-list-delete-button"
-                onClick={() => removeUser(user)}
-                key={user.id + 2}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
+          </Fragment>
         ))}
       </ul>
     </main>
