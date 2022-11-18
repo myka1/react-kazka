@@ -39,7 +39,11 @@ const DeleteByName = ({
       <button>Delete Users By Name</button>
       <p className="deleteByNameError">
         {nameError}{" "}
-        {nameError !== "" && <button onClick={handleClick}>X</button>}
+        {nameError !== "" && (
+          <button className="nameErrorButton" onClick={handleClick}>
+            ❌
+          </button>
+        )}
       </p>
     </form>
   );

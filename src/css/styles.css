@@ -32,13 +32,20 @@ button {
     
 }
 
+.nameErrorButton {
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    background-color: #edede9;
+}
+
 .searchBar {
     text-shadow: 0.1px 0.5px;
 }
 
 .deleteByNameError {
     position: absolute; 
-    color: red;
+    color: #F92F60;
     margin-top: 0;
 }
 
