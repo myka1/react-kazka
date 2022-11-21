@@ -43,21 +43,13 @@ const App = () => {
     setLastName("");
   };
 
-  const handleChange = (nextTodo: User) => {
-    setUsers(users.map(t => {
-      if (t.id === nextTodo.id) {
-        return nextTodo;
-      } else {
-        return t
-        )
-    }
-
-  function removeUser(user: User) {
-    setUsers((currentUsers) => currentUsers.filter((currentUser) => {
-      return user.id !== currentUser.id;
-    })
+  const removeUser = (user: User) => {
+    setUsers((currentUsers) =>
+      currentUsers.filter((currentUser) => {
+        return user.id !== currentUser.id;
+      })
     );
-  }
+  };
 
   const duplicateUser = (user: User) => {
     const newUser: User = {
@@ -135,8 +127,6 @@ const App = () => {
           users={filteredUsers}
           onUserClick={duplicateUser}
           removeUser={removeUser}
-          onChange={handleChange}
-          setName={setEditName}
         />
       </div>
     </div>

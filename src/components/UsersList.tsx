@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { User } from "../App";
 import { Fragment } from "react";
 
@@ -6,40 +5,22 @@ const UsersList = ({
   users,
   onUserClick,
   removeUser,
-  onChange,
-  handleChange,
 }: {
   users: User[];
   onUserClick: (user: User) => void;
   removeUser: (user: User) => void;
-  onChange: (e: React.ChangeEvent) => void;
-  handleChange;
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
-
   return (
     <main className="user-list-main">
       <ul className="users-list-ul">
         {users.map((user) => (
           <Fragment key={user.id}>
             <div className="user-list-div">
-              {isEditing ? (
-                <>
-                  <div className="user-list-li-div">
-                    <input value={user.name} onChange={handleChange()} />
-                  </div>
-                  <button onClick={() => setIsEditing(false)}>Save</button>
-                </>
-              ) : (
-                <>
-                  <div className="user-list-li-div">
-                    <li className="user-list-li-p">
-                      {user.id}: {user.name} {user.lastName}
-                    </li>
-                  </div>
-                  <button onClick={() => setIsEditing(true)}>Edit</button>
-                </>
-              )}
+              <div className="user-list-li-div">
+                <li className="user-list-li-p">
+                  {user.id}: {user.name} {user.lastName}
+                </li>
+              </div>
 
               <div className="user-list-button-div">
                 <button
