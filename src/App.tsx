@@ -43,6 +43,18 @@ const App = () => {
     setLastName("");
   };
 
+  const handleEdit = (editedUser: User) => {
+    setUsers(
+      users.map((user) => {
+        if (user.id === editedUser.id) {
+          return editedUser;
+        } else {
+          return user;
+        }
+      })
+    );
+  };
+
   const removeUser = (user: User) => {
     setUsers((currentUsers) =>
       currentUsers.filter((currentUser) => {
@@ -127,6 +139,7 @@ const App = () => {
           users={filteredUsers}
           onUserClick={duplicateUser}
           removeUser={removeUser}
+          setUsers={handleEdit}
         />
       </div>
     </div>
