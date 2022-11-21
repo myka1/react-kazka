@@ -32,7 +32,6 @@ const App = () => {
   const [lastName, setLastName] = useState("");
   const { SearchBarElement, searchQuery } = useSearch();
   const [nameError, setNameError] = useState("");
-  const [editName, setEditName] = useState("");
 
   useUsersListRefiller(users, () => setUsers(mockUsers));
 
@@ -128,8 +127,6 @@ const App = () => {
           users={filteredUsers}
           onUserClick={duplicateUser}
           removeUser={removeUser}
-          onChange={() => setEditName(name)}
-          setName={setEditName}
         />
       </div>
     </div>
