@@ -119,6 +119,36 @@ const App = () => {
     setUsers(sortedUsers);
   };
 
+  const sortZtoA = () => {
+    const sortedUsers = [...users];
+    sortedUsers.sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return 1;
+      }
+      if (nameA > nameB) {
+        return -1;
+      }
+
+      return 0;
+    });
+
+    setUsers(sortedUsers);
+  };
+
+  const sortById = () => {
+    const sortedUsers = [...users];
+    sortedUsers.sort((a, b) => a.id - b.id);
+    setUsers(sortedUsers);
+  };
+
+  const sortByIdReverse = () => {
+    const sortedUsers = [...users];
+    sortedUsers.sort((a, b) => b.id - a.id);
+    setUsers(sortedUsers);
+  };
+
   return (
     <div>
       <div className="nav">
@@ -158,7 +188,12 @@ const App = () => {
         removeUser={removeUser}
         setUsers={handleEdit}
       />
-      <SortAtoZ sortAtoZ={sortAtoZ} />
+      <SortAtoZ
+        sortAtoZ={sortAtoZ}
+        sortZtoA={sortZtoA}
+        sortById={sortById}
+        sortByIdReverse={sortByIdReverse}
+      />
     </div>
   );
 };
