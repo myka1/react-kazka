@@ -14,32 +14,35 @@ const UsersList = ({
   setUsers: (user: User) => void;
 }) => {
   return (
-    <main className="user-list-main">
-      <ul className="users-list-ul">
-        {users.map((user) => (
-          <Fragment key={user.id}>
-            <div className="user-list-div">
-              <Editing user={user} setUsers={setUsers} />
+    <div className="users-div">
+      <main className="user-list-main">
+        <h2>Users</h2>
+        <ul className="users-list-ul">
+          {users.map((user) => (
+            <Fragment key={user.id}>
+              <div className="user-list-div">
+                <Editing user={user} setUsers={setUsers} />
 
-              <div className="user-list-button-div">
-                <button
-                  className="user-list-doublicate-button"
-                  onClick={() => onUserClick(user)}
-                >
-                  Doublicate
-                </button>
-                <button
-                  className="user-list-delete-button"
-                  onClick={() => removeUser(user)}
-                >
-                  Delete
-                </button>
+                <div className="user-list-button-div">
+                  <button
+                    className="user-list-doublicate-button"
+                    onClick={() => onUserClick(user)}
+                  >
+                    Doublicate
+                  </button>
+                  <button
+                    className="user-list-delete-button"
+                    onClick={() => removeUser(user)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          </Fragment>
-        ))}
-      </ul>
-    </main>
+            </Fragment>
+          ))}
+        </ul>
+      </main>
+    </div>
   );
 };
 

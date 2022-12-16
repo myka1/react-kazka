@@ -4,6 +4,7 @@ import useUsersListRefiller from "./hooks/useUsersListRefiller";
 import DeleteByName from "./components/DeleteByName";
 import { useSearch } from "./hooks/useSearch";
 import { getFilteredUsers } from "./utils";
+import SortAtoZ from "./components/SortAtoZ";
 
 export type User = {
   name: string;
@@ -100,6 +101,24 @@ const App = () => {
       charUp.lastName.charAt(0).toUpperCase() + charUp.lastName.slice(1);
   }
 
+  const sortAtoZ = () => {
+    const sortedUsers = [...users];
+    sortedUsers.sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    setUsers(sortedUsers);
+  };
+
   return (
     <div>
       <div className="nav">
@@ -133,15 +152,13 @@ const App = () => {
         />
         <SearchBarElement />
       </div>
-      <div className="users-div">
-        <h2>Users</h2>
-        <UsersList
-          users={filteredUsers}
-          onUserClick={duplicateUser}
-          removeUser={removeUser}
-          setUsers={handleEdit}
-        />
-      </div>
+      <UsersList
+        users={filteredUsers}
+        onUserClick={duplicateUser}
+        removeUser={removeUser}
+        setUsers={handleEdit}
+      />
+      <SortAtoZ sortAtoZ={sortAtoZ} />
     </div>
   );
 };
