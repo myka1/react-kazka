@@ -106,13 +106,22 @@ const App = () => {
     sortedUsers.sort((a, b) => {
       const nameA = a.name.toUpperCase();
       const nameB = b.name.toUpperCase();
+      const lastNameA = a.lastName.toUpperCase();
+      const lastNameB = b.lastName.toUpperCase();
       if (nameA < nameB) {
         return -1;
       }
       if (nameA > nameB) {
         return 1;
       }
-
+      if (nameA === nameB) {
+        if (lastNameA < lastNameB) {
+          return -1;
+        }
+        if (lastNameA > lastNameB) {
+          return 1;
+        }
+      }
       return 0;
     });
 
@@ -124,11 +133,21 @@ const App = () => {
     sortedUsers.sort((a, b) => {
       const nameA = a.name.toUpperCase();
       const nameB = b.name.toUpperCase();
+      const lastNameA = a.lastName.toUpperCase();
+      const lastNameB = b.lastName.toUpperCase();
       if (nameA < nameB) {
         return 1;
       }
       if (nameA > nameB) {
         return -1;
+      }
+      if (nameA === nameB) {
+        if (lastNameA > lastNameB) {
+          return -1;
+        }
+        if (lastNameA < lastNameB) {
+          return 1;
+        }
       }
 
       return 0;
