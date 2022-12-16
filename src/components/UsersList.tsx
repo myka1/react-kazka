@@ -21,13 +21,6 @@ const UsersList = ({
             <div className="user-list-div">
               <Editing user={user} setUsers={setUsers} />
 
-              {/* <div className="user-list-li-div">
-                <li className="user-list-li-p">
-                  {user.id}: {user.name} {user.lastName}
-                </li>
-              </div>
-              <button onClick={() => setIsEditing(true)}>Edit</button> */}
-
               <div className="user-list-button-div">
                 <button
                   className="user-list-doublicate-button"
