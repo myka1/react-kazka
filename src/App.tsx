@@ -5,6 +5,7 @@ import DeleteByName from "./components/DeleteByName";
 import { useSearch } from "./hooks/useSearch";
 import { getFilteredUsers } from "./utils";
 import SortAtoZ from "./components/SortAtoZ";
+import AddUser from "./components/AddUser";
 
 export type User = {
   name: string;
@@ -29,19 +30,19 @@ let index = mockUsers.length;
 
 const App = () => {
   const [users, setUsers] = useState<User[]>(mockUsers);
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
   const { SearchBarElement, searchQuery } = useSearch();
   const [nameError, setNameError] = useState("");
 
   useUsersListRefiller(users, () => setUsers(mockUsers));
 
-  const addUser = () => {
-    const newUser = { id: index, name, lastName };
+  const addUser = (name: string, lastName: string) => {
+    const newUser: User = {
+      name: name,
+      lastName: lastName,
+      id: index,
+    };
     setUsers((currentUsers) => [...currentUsers, newUser]);
     index++;
-    setName("");
-    setLastName("");
   };
 
   const handleEdit = (editedUser: User) => {
@@ -170,29 +171,8 @@ const App = () => {
 
   return (
     <div>
-      <div className="nav">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            addUser();
-          }}
-        >
-          <input
-            required
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            required
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-          <button>Add User</button>
-        </form>
+      <nav className="nav">
+        <AddUser addUser={addUser} />
         <DeleteByName
           removeUserByName={removeUserByName}
           users={filteredUsers}
@@ -200,7 +180,7 @@ const App = () => {
           handleClick={handleClick}
         />
         <SearchBarElement />
-      </div>
+      </nav>
       <UsersList
         users={filteredUsers}
         onUserClick={duplicateUser}
