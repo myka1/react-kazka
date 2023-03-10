@@ -28,7 +28,7 @@ const UsersList = ({
                     className="user-list-doublicate-button"
                     onClick={() => onUserClick(user)}
                   >
-                    Doublicate
+                    Duplicate
                   </button>
                   <button
                     className="user-list-delete-button"
